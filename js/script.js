@@ -34,3 +34,13 @@ function saveTasks(tasks) {
 function getTaskContainer(status) {
   return document.querySelector(`.${status}-container`);
 }
+
+/**
+ * Find a task in tasks array by id.
+ * @param {Array<Object>} tasks
+ * @param {number|string} id
+ * @returns {Object|undefined}
+ */
+function findTaskById(tasks, id) {
+  return tasks.find((t) => String(t.id) === String(id));
+}
