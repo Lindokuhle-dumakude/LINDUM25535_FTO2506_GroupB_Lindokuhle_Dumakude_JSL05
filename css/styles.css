@@ -261,6 +261,11 @@ main {
   .addTask-btn {
     display: none;
   }
+
+  /* ==== Display mobile add task button on mobile screens */
+  #mobileAddTask-btn {
+    display: block;
+  }
 }
 
 /* mobile smartphone responsive */
