@@ -17,3 +17,11 @@ function loadTasks() {
     return [...initialTasks];
   }
 }
+
+/**
+ * Save tasks array into localStorage.
+ * @param {Array<Object>} tasks
+ */
+function saveTasks(tasks) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
