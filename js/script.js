@@ -25,3 +25,12 @@ function loadTasks() {
 function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
+
+/**
+ * Return the DOM container element for a status.
+ * @param {"todo"|"doing"|"done"} status
+ * @returns {HTMLElement|null}
+ */
+function getTaskContainer(status) {
+  return document.querySelector(`.${status}-container`);
+}
