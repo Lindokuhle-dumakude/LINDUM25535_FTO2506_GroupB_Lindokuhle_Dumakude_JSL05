@@ -395,3 +395,23 @@ textarea {
 .addTask-btn:hover {
   background-color: var(--btnHover-color);
 }
+
+/* ===== Mobile add task button styling ===== */
+
+.addTaskMobile-btn {
+  width: 2.0625rem;
+  height: 2.0625rem;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: var(--btn-color);
+  color: var(--btnText-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  bottom: 40%;
+  display: none;
+}
