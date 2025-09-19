@@ -255,6 +255,12 @@ main {
   .column-div {
     width: 100%;
   }
+
+  /* ==== Button hidden on screens less than 1023px */
+
+  .addTask-btn {
+    display: none;
+  }
 }
 
 /* mobile smartphone responsive */
