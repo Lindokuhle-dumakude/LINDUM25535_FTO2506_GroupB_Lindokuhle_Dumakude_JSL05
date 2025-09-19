@@ -92,3 +92,23 @@ function renderTasks(tasks) {
 
   updateColumnCounts(tasks);
 }
+
+/**
+ * Update the column heading counts (TODO / DOING / DONE).
+ * @param {Array<Object>} tasks
+ */
+function updateColumnCounts(tasks) {
+  const map = {
+    todo: tasks.filter((t) => t.status === "todo").length,
+    doing: tasks.filter((t) => t.status === "doing").length,
+    done: tasks.filter((t) => t.status === "done").length,
+  };
+
+  const todoHeading = document.querySelector(".todo-heading");
+  const doingHeading = document.querySelector(".doing-heading");
+  const doneHeading = document.querySelector(".done-heading");
+
+  if (todoHeading) todoHeading.textContent = `TODO (${map.todo})`;
+  if (doingHeading) doingHeading.textContent = `DOING (${map.doing})`;
+  if (doneHeading) doneHeading.textContent = `DONE (${map.done})`;
+}
