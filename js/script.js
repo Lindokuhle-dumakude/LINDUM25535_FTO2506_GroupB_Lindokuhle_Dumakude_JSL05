@@ -67,3 +67,28 @@ function createTaskCard(task) {
 
   return card;
 }
+
+/**
+ * Render all tasks into their appropriate columns and update counts.
+ * @param {Array<Object>} tasks
+ */
+function renderTasks(tasks) {
+  // clear containers
+  ["todo", "doing", "done"].forEach((status) => {
+    const container = getTaskContainer(status);
+    if (container) container.innerHTML = "";
+  });
+
+  // create and append cards
+  tasks.forEach((task) => {
+    const container = getTaskContainer(task.status);
+    if (container) {
+      const card = createTaskCard(task);
+      container.appendChild(card);
+    } else {
+      console.warn("Missing container for status:", task.status);
+    }
+  });
+
+  updateColumnCounts(tasks);
+}
