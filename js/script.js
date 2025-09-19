@@ -44,3 +44,26 @@ function getTaskContainer(status) {
 function findTaskById(tasks, id) {
   return tasks.find((t) => String(t.id) === String(id));
 }
+
+/**
+ * Create a single task card element and attach click handler to open edit modal.
+ * @param {Object} task
+ * @param {number} task.id
+ * @param {string} task.title
+ * @param {string} task.description
+ * @param {string} task.status
+ * @returns {HTMLElement}
+ */
+function createTaskCard(task) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.textContent = task.title;
+  card.dataset.id = task.id;
+
+  // open modal in edit mode when clicked
+  card.addEventListener("click", () => {
+    openTaskModal(task);
+  });
+
+  return card;
+}
