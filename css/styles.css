@@ -348,10 +348,11 @@ textarea {
 
 /* Save button */
 .submit-btn {
+  width: 100%;
   background: var(--btn-color);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 1.25rem;
   padding: 12px;
   font-size: 1rem;
   font-weight: 600;
