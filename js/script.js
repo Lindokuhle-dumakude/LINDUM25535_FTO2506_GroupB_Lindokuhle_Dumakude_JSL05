@@ -241,3 +241,22 @@ function setupModalEventListeners(tasksRef) {
   if (form)
     form.addEventListener("submit", (e) => handleFormSubmit(e, tasksRef));
 }
+
+/**
+ * Initialize the Task Board application once the DOM is fully loaded.
+ * - Loads tasks from localStorage (or fallback initial data).
+ * - Renders tasks into their respective columns.
+ * - Sets up modal and form event listeners with a reference to tasks array.
+ * - Optionally exposes the tasks array globally for debugging.
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  // load tasks into memory
+  const tasks = loadTasks();
+
+  // initial render
+  renderTasks(tasks);
+
+  // modal + form wiring (pass tasks array reference)
+  setupModalEventListeners(tasks);
+});
