@@ -153,3 +153,58 @@ function closeTaskModal() {
   if (!modal) return;
   modal.classList.remove("show");
 }
+
+/**
+ * Handle form submit for add/edit task.
+ * - If taskId exists, update existing task
+ * - Otherwise create new task with unique id
+ * @param {Event} e
+ * @param {Array<Object>} tasksRef (array reference to mutate)
+ */
+function handleFormSubmit(e, tasksRef) {
+  e.preventDefault();
+
+  const idField = document.getElementById("taskId");
+  const titleField = document.getElementById("taskTitle");
+  const descField = document.getElementById("taskDescription");
+  const statusField = document.getElementById("taskStatus");
+
+  const title = titleField.value.trim();
+  const description = descField.value.trim();
+  const status = statusField.value;
+
+  // Validate title
+  if (!title) {
+    alert("Please enter a task title.");
+    titleField.focus();
+    return;
+  }
+
+  const taskId = idField.value;
+
+  if (taskId) {
+    // edit existing
+    const task = findTaskById(tasksRef, taskId);
+    if (task) {
+      task.title = title;
+      task.description = description;
+      task.status = status;
+    } else {
+      console.warn("Tried to edit non-existent task id:", taskId);
+    }
+  } else {
+    // create new
+    const newTask = {
+      id: Date.now(), // simple unique id
+      title,
+      description,
+      status,
+    };
+    tasksRef.push(newTask);
+  }
+
+  // persist and re-render
+  saveTasks(tasksRef);
+  renderTasks(tasksRef);
+  closeTaskModal();
+}
