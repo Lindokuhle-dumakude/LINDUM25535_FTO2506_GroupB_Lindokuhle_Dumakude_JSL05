@@ -208,3 +208,36 @@ function handleFormSubmit(e, tasksRef) {
   renderTasks(tasksRef);
   closeTaskModal();
 }
+
+/**
+ * Set up modal event listeners: close button, backdrop click, add buttons, and form submit.
+ * @param {Array<Object>} tasksRef
+ */
+function setupModalEventListeners(tasksRef) {
+  const modal = document.getElementById("taskModal");
+  const closeBtn = modal?.querySelector(".close-btn");
+  const form = document.getElementById("taskForm");
+
+  if (closeBtn) closeBtn.addEventListener("click", closeTaskModal);
+
+  // click on backdrop -> close
+  window.addEventListener("click", (ev) => {
+    if (ev.target === modal) closeTaskModal();
+  });
+
+  // Escape key closes modal
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") closeTaskModal();
+  });
+
+  // Add task buttons
+  const addBtn = document.querySelector(".addTask-btn");
+  const addBtnMobile = document.getElementById("mobileAddTask-btn");
+  if (addBtn) addBtn.addEventListener("click", () => openTaskModal(null));
+  if (addBtnMobile)
+    addBtnMobile.addEventListener("click", () => openTaskModal(null));
+
+  // form submit
+  if (form)
+    form.addEventListener("submit", (e) => handleFormSubmit(e, tasksRef));
+}
