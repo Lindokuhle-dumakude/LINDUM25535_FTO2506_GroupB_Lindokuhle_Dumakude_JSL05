@@ -420,3 +420,12 @@ textarea {
   bottom: 40%;
   display: none;
 }
+
+/* Style all placeholders */
+form input::placeholder,
+form textarea::placeholder {
+  color: #b2b6bb;
+  font-size: 0.8125rem;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
