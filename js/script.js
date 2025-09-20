@@ -127,6 +127,7 @@ function openTaskModal(task = null) {
   const titleField = document.getElementById("taskTitle");
   const descField = document.getElementById("taskDescription");
   const statusField = document.getElementById("taskStatus");
+  const submitBtn = modal.querySelector(".submit-btn");
 
   if (task) {
     modalTitle.textContent = "Edit Task";
@@ -134,12 +135,14 @@ function openTaskModal(task = null) {
     titleField.value = task.title;
     descField.value = task.description || "";
     statusField.value = task.status;
+    submitBtn.textContent = "Save Task";
   } else {
     modalTitle.textContent = "Add New Task";
     idField.value = "";
     titleField.value = "";
     descField.value = "";
     statusField.value = "todo";
+    submitBtn.textContent = "Create Task";
   }
 
   modal.classList.add("show");
