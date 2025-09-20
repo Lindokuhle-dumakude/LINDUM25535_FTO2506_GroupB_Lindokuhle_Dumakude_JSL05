@@ -112,3 +112,44 @@ function updateColumnCounts(tasks) {
   if (doingHeading) doingHeading.textContent = `DOING (${map.doing})`;
   if (doneHeading) doneHeading.textContent = `DONE (${map.done})`;
 }
+
+/**
+ * Open modal. If `task` is provided, open in Edit mode. If null, open Add mode.
+ * @param {Object|null} task
+ */
+function openTaskModal(task = null) {
+  const modal = document.getElementById("taskModal");
+  if (!modal) return;
+
+  // populate fields
+  const modalTitle = document.getElementById("modalTitle");
+  const idField = document.getElementById("taskId");
+  const titleField = document.getElementById("taskTitle");
+  const descField = document.getElementById("taskDescription");
+  const statusField = document.getElementById("taskStatus");
+
+  if (task) {
+    modalTitle.textContent = "Edit Task";
+    idField.value = task.id;
+    titleField.value = task.title;
+    descField.value = task.description || "";
+    statusField.value = task.status;
+  } else {
+    modalTitle.textContent = "Add New Task";
+    idField.value = "";
+    titleField.value = "";
+    descField.value = "";
+    statusField.value = "todo";
+  }
+
+  modal.classList.add("show");
+  // focus title
+  titleField.focus();
+}
+
+/** Close modal */
+function closeTaskModal() {
+  const modal = document.getElementById("taskModal");
+  if (!modal) return;
+  modal.classList.remove("show");
+}
